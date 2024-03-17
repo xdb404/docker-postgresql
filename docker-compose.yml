@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  postgres:
+    image: postgres:${POSTGRES_IMAGE:-latest}
+    platform: linux/amd64
+    restart: always
+    ports:
+      - "127.0.0.1:5432:5432"
+    expose:
+      - 5432
+    volumes:
+      - "${PG_DATA:-./volumes/pgdata}:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-Z&!tjpF2brc9hBS@S2}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-postgres}
